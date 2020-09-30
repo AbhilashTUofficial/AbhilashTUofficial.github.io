@@ -21,6 +21,13 @@
    
   
     <body id="body" data-spy="scroll" data-target=".header">
+        <style>
+            .iconPython,.iconJava,.iconFlutter,.iconAdobexd,.iconBlender,.iconLinux{
+                width: 120px;
+            }
+
+        </style>
+        <div id="preloader"></div>
 
           <header class="header navbar-fixed-top">
               <nav class="navbar" role="navigation">
@@ -34,7 +41,7 @@
                           <div class="logo">
                             <a class="logo-wrap" href="#body">
                                 <img class="logo-img logo-img-main" src="img/title.png" alt="Abhilash-title">
-                                <img class="logo-img logo-img-active" src="img/logo.png" alt="FlameOnePage Dark Logo">
+                                <img class="logo-img logo-img-active" src="img/logo.png" alt="storm-logo">
                             </a>
                         </div>
                     </div>
@@ -184,9 +191,9 @@
                                         </div>
                                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                                It’s not obvious, If you read the previous quotes, then you might think I am very childish,
+                                                obviously you might think I am very childish, and
                                                  it’s not wrong but I’m super determined too. I can maintain focus for a lot longer than any typical human,
-                                                  and you will don’t find any dips and drops anything if I’m really into it.
+                                                  and you will don’t find any dips and drops in anything if I’m really into it.
                                                    My dreams where always the same even the methods to make it happen may be changed and it’s the salvation of life,
                                                     not only humans not only earthlings, every lifeform that ever existed, and so on to the future.
                                             </div>
@@ -219,21 +226,21 @@
                         <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 sm-margin-b-30">
                             <div class="margin-b-60">
                                 <h3>Graphics designing</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incididunt ut laboret dolore magna ut consequat siad esqudiat dolor</p>
+                                <p>Started as a hobby, but today it’s one of the things I enjoyed the most in my life. Maybe I’m not the best init but graphic designing gives relief from stress.</p>
                             </div>
                             <img class="full-width img-responsive wow fadeInUp" src="img/500x500/01.jpg" alt="Portfolio Image" data-wow-duration=".3" data-wow-delay=".2s">
                         </div>
                         <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4">
                             <div class="margin-b-60">
                               <h3>Software development</h3>
-                              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incididunt ut laboret dolore magna ut consequat siad esqudiat dolor</p>  
+                              <p>I like programming a lot, developing software is so satisfying for me, but I always annoyed by the fact that I’m not even hitting my potential init.</p>  
                             </div>
                              <img class="full-width img-responsive wow fadeInUp" src="img/500x500/02.jpg" alt="Portfolio Image" data-wow-duration=".3" data-wow-delay=".3s">
                         </div>
                         <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4">
                             <div class="margin-t-60 margin-b-60">
                                 <h3>3D modeling</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incididunt ut laboret dolore magna ut consequat siad esqudiat dolor</p>
+                                <p>Inspired by the awesome community of 3D modeling, for example, blender, an awesome software which is completely open-source, I really want to do something for them.</p>
                             </div>
                             <img class="full-width img-responsive wow fadeInUp" src="img/500x500/03.jpg" alt="Portfolio Image" data-wow-duration=".3" data-wow-delay=".4s">
                         </div>
@@ -245,7 +252,6 @@
                     <div class="row margin-b-40">
                         <div class="col-sm-6">
                             <h2>Technologies</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed tempor incididunt ut laboret dolore magna aliqua enim minim veniam exercitation</p>
                         </div>
                     </div>
                     <!--// end row -->
@@ -254,11 +260,14 @@
                         <div class="col-sm-4 sm-margin-b-2">
                             <div class="service" data-height="height">
                                 <div class="service-element">
-                                    <i class="service-icon icon-chemistry"></i>
+                                    <i class="service-icon"></i>
                                 </div>
                                 <div class="service-info">
+                                    <img class="iconPython" src="img/logo.png">
                                     <h3>Python</h3>
-                                    <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                                    <p class="margin-b-5">Familiar with Selenium, Pygame, TensorFlow, and more.
+                                        Experience in creating simple games.
+                                        </p>
                                 </div>
                                 <a href="#" class="content-wrapper-link"></a>    
                             </div>
@@ -269,8 +278,10 @@
                                     <i class="service-icon color-white icon-screen-tablet"></i>
                                 </div>
                                 <div class="service-info">
+                                    <img class="iconJava" src="img/logo.png">
+
                                     <h3 class="color-white">Java</h3>
-                                    <p class="color-white margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
+                                    <p class="color-white margin-b-5">Experience in developing software and games, and also it’s my most favorite programming language.</p>
                                 </div>
                                 <a href="#" class="content-wrapper-link"></a>    
                             </div>
@@ -281,6 +292,7 @@
                                     <i class="service-icon icon-badge"></i>
                                 </div>
                                 <div class="service-info">
+                                    <img class="iconFlutter" src="img/logo.png">
                                     <h3>Flutter</h3>
                                     <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
                                 </div>
@@ -297,6 +309,7 @@
                                     <i class="service-icon icon-notebook"></i>
                                 </div>
                                 <div class="service-info">
+                                    <img class="iconAdobexd" src="img/logo.png">
                                     <h3>Adobe XD</h3>
                                     <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
                                 </div>
@@ -309,6 +322,7 @@
                                     <i class="service-icon icon-speedometer"></i>
                                 </div>
                                 <div class="service-info">
+                                    <img class="iconBlender" src="img/logo.png">
                                     <h3>Blender</h3>
                                     <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
                                 </div>
@@ -321,6 +335,7 @@
                                     <i class="service-icon icon-badge"></i>
                                 </div>
                                 <div class="service-info">
+                                    <img class="iconLinux" src="img/logo.png">
                                     <h3>Linux</h3>
                                     <p class="margin-b-5">Lorem ipsum dolor amet consectetur ut consequat siad esqudiat dolor</p>
                                 </div>
