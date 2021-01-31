@@ -13,8 +13,8 @@ Building a personal website has always been a hassle, even though I have some ba
 [<img align="left" alt="JavaScript" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png">][js]
 <br/><br/>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/AbhilashTUofficial/Flutter-programming?color=blue&label=Last%20Commit%3A&style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbhilashTUofficial/Flutter-programming?label=Repo%20Size%3A&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/AbhilashTUofficial/AbhilashTUofficial.github.io?color=blue&label=Last%20Commit%3A&style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbhilashTUofficial/AbhilashTUofficial.github.io?label=Repo%20Size%3A&style=for-the-badge)
 ### Connect with me :  
 <a href="https://github.com/AbhilashTUofficial" target="_blank">
 <img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
