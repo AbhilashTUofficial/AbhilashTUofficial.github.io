@@ -1,1 +1,626 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><script defer="defer" src="/static/js/main.d6c1c1b4.js"></script><link href="/static/css/main.605f50b3.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhilash T.U — Full Stack Developer</title>
+<meta name="description" content="Portfolio of Abhilash T.U, a full stack developer working across React, Next.js, React Native and Node.js. Currently at Rowenix Marketing, based in Trivandrum, Kerala.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23FF4D8D'/%3E%3Ctext x='50' y='64' font-size='40' font-family='Arial' font-weight='700' fill='%23FFF9F0' text-anchor='middle'%3EAT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1F1730; --muted:#6E5F76; --cream:#FFF9F0;
+    --pink:#FF4D8D; --coral:#FF7A45; --yellow:#FFD23F; --peach:#FFC1A6; --teal:#2FBF9F;
+    --coral-deep:#C24E1F; --teal-deep:#1C8069; --pink-deep:#C22D5F;
+    --skin:#C9895C; --skin-dark:#A66B42; --hair:#241A2E;
+    --line:rgba(31,23,48,.13); --shadow:0 18px 50px rgba(60,20,45,.14);
+    --radius:26px; --display:"Space Grotesk",sans-serif; --body:"DM Sans",sans-serif; --mono:"JetBrains Mono",monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; color:var(--ink); font-family:var(--body); overflow-x:hidden;
+    background-color:var(--cream);
+    background-image:
+      linear-gradient(rgba(31,23,48,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,23,48,.07) 1px, transparent 1px);
+    background-size:32px 32px;
+    background-position:-1px -1px;
+  }
+  a{ text-decoration:none; color:inherit; }
+  h1,h2,h3{ font-family:var(--display); letter-spacing:-.04em; margin:0; }
+  ::selection{ background:var(--yellow); color:var(--ink); }
+  :focus-visible{ outline:3px solid var(--ink); outline-offset:3px; }
+  .wrap{ width:min(1160px, calc(100% - 32px)); margin:auto; }
+  section{ padding:100px 0; scroll-margin-top:100px; position:relative; overflow:hidden; }
+  .skip-link{ position:absolute; left:-999px; top:0; background:var(--ink); color:var(--cream); padding:10px 16px; z-index:10000; border-radius:0 0 10px 0; font-weight:600; }
+  .skip-link:focus{ left:0; }
+
+  .reveal{ opacity:0; transform:translateY(28px) scale(.97); transition:opacity .7s ease, transform .8s cubic-bezier(.16,1.35,.3,1); }
+  .reveal.visible{ opacity:1; transform:none; }
+
+  /* ---- nav ---- */
+  .nav{ position:fixed; z-index:50; top:14px; left:50%; transform:translateX(-50%); width:min(1160px, calc(100% - 24px)); padding:12px 14px 12px 20px; background:rgba(255,249,240,.86); backdrop-filter:blur(18px); border:1px solid var(--line); border-radius:999px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 8px 30px rgba(31,23,48,.08); }
+  .logo{ font-family:var(--display); font-weight:700; font-size:1.05rem; letter-spacing:-.04em; display:flex; align-items:center; }
+  .logo i{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--pink); margin-left:5px; font-style:normal; }
+  .navlinks{ display:flex; gap:22px; font-size:.88rem; color:var(--muted); font-weight:500; }
+  .navlinks a:hover{ color:var(--ink); }
+  .navcta{ padding:11px 18px; background:var(--ink); color:var(--cream); border-radius:999px; font-weight:700; font-size:.84rem; white-space:nowrap; }
+  .navcta:hover{ background:var(--pink-deep); }
+  @media (max-width:860px){ .navlinks{ display:none; } }
+
+  /* ---- buttons ---- */
+  .primary{ display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:var(--cream); padding:16px 22px; border-radius:999px; font-weight:700; font-family:var(--body); box-shadow:0 10px 0 rgba(31,23,48,.16); transition:transform .25s cubic-bezier(.2,1.5,.4,1), box-shadow .25s; }
+  .primary:hover{ transform:translateY(-4px) rotate(-1deg); box-shadow:0 14px 0 rgba(31,23,48,.16); }
+  .primary.ghost{ background:transparent; color:var(--ink); box-shadow:none; border:2px solid var(--ink); padding:14px 20px; }
+  .primary.ghost:hover{ background:var(--ink); color:var(--cream); transform:translateY(-4px) rotate(1deg); }
+  .primary.on-dark{ background:var(--cream); color:var(--ink); box-shadow:0 10px 0 rgba(0,0,0,.22); }
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .tiny{ font-size:.8rem; color:rgba(31,23,48,.68); margin-top:14px; }
+
+  /* ---- hero ---- */
+  .hero{ padding:150px 0 0; }
+  .hero-meta{ display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.76rem; color:var(--muted); margin-bottom:22px; }
+  .my-name-is{ font-size:.95rem; color:var(--coral-deep); font-weight:600; margin-bottom:6px; }
+  .hero-name{ font-size:clamp(4rem, 14vw, 9rem); line-height:.86; font-weight:700; }
+  .badge-row{ display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 20px; }
+  .badge{ background:#fff; border:1px solid var(--line); padding:9px 16px; border-radius:999px; font-size:.84rem; font-weight:500; }
+  .badge b{ font-weight:700; }
+  .status-pill{ display:inline-flex; align-items:center; gap:8px; background:var(--teal); color:var(--ink); padding:8px 15px; border-radius:999px; font-size:.8rem; font-weight:700; margin-bottom:26px; }
+  .status-pill span{ width:7px; height:7px; border-radius:50%; background:var(--ink); animation:pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+  .hero-tagline{ font-size:clamp(1.3rem, 2.6vw, 1.9rem); line-height:1.35; max-width:720px; margin:0 0 30px; }
+  .icon-chip{ display:inline-flex; align-items:center; justify-content:center; width:1.5em; height:1.5em; border-radius:50%; vertical-align:-.38em; margin:0 .05em; }
+  .icon-chip svg{ width:58%; height:58%; }
+  .icon-chip.bolt{ background:var(--yellow); }
+  .icon-chip.target{ background:var(--pink); }
+  .icon-chip.spark{ background:var(--teal); }
+  .icon-chip.loop{ background:var(--coral); }
+  .tag-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:34px; }
+  .tag-row span{ font-size:.82rem; color:var(--muted); font-weight:500; }
+  .tag-row .dot{ opacity:.5; }
+  .squiggle{ display:block; width:100%; height:56px; margin-top:60px; overflow:visible; }
+  .squiggle path{ stroke:var(--ink); stroke-width:3; fill:none; }
+  @media (max-width:700px){ .hero{ padding-top:130px; } .badge-row, .tag-row{ justify-content:flex-start; } }
+
+  /* ---- hero doodle stage ---- */
+  .hero-stage{ position:relative; height:0; }
+  .doodle-wrap{ position:absolute; }
+  .sticker-wrap{ position:absolute; }
+  .float-y{ animation:floatY 5s ease-in-out infinite; }
+  .float-y2{ animation:floatY 6.5s ease-in-out infinite; }
+  .float-rot{ animation:floatRot 6s ease-in-out infinite; }
+  @keyframes floatY{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
+  @keyframes floatRot{ 0%,100%{ transform:rotate(-6deg) translateY(0); } 50%{ transform:rotate(4deg) translateY(-10px); } }
+
+  /* ---- ticker ---- */
+  .ticker{ background:var(--ink); color:var(--cream); overflow:hidden; padding:17px 0; margin-top:40px; }
+  .ticker-track{ display:flex; width:max-content; animation:marquee 26s linear infinite; }
+  .ticker-group{ display:flex; gap:12px; padding-right:12px; flex-shrink:0; }
+  .pill{ border:1px solid rgba(255,249,240,.28); border-radius:999px; padding:9px 16px; white-space:nowrap; font-size:.82rem; }
+  .pill.hot{ background:var(--yellow); color:var(--ink); border-color:transparent; font-weight:600; }
+  @keyframes marquee{ to{ transform:translateX(-50%); } }
+
+  /* ---- section heads ---- */
+  .kicker{ text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; font-weight:700; color:var(--coral-deep); margin-bottom:14px; }
+  .section-title{ font-size:clamp(2.2rem, 4.6vw, 3.6rem); line-height:1.02; max-width:760px; }
+  .lead{ color:var(--muted); max-width:600px; font-size:1.02rem; line-height:1.65; margin-top:18px; }
+  .transition-line{ font-family:var(--display); font-size:1.05rem; color:var(--muted); margin-bottom:8px; }
+
+  /* ---- about ---- */
+  .about-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:start; margin-top:44px; }
+  .about-visual{ position:sticky; top:110px; display:flex; justify-content:center; }
+  .about-text p{ font-size:1.06rem; line-height:1.75; max-width:64ch; margin:0 0 20px; }
+  .identity-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
+  .tag{ background:#fff; border:1px solid var(--line); padding:9px 16px; border-radius:999px; font-size:.85rem; font-weight:500; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } .about-visual{ position:static; margin-bottom:20px; } }
+
+  /* ---- toolkit ---- */
+  .toolkit-groups{ margin-top:40px; display:flex; flex-direction:column; gap:24px; }
+  .toolkit-group h3{ font-family:var(--display); font-size:1.02rem; margin-bottom:12px; letter-spacing:-.02em; }
+  .toolkit-pills{ display:flex; flex-wrap:wrap; gap:10px; }
+  .toolkit-pills span{ background:#fff; border:1px solid var(--line); padding:8px 14px; border-radius:999px; font-size:.84rem; font-weight:500; }
+
+  /* ---- work carousel ---- */
+  .work-note{ margin-top:18px; }
+  .work-carousel-wrap{ margin-top:16px; }
+  .work-carousel{ display:flex; gap:22px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding:8px 4px 18px; -webkit-overflow-scrolling:touch; }
+  .work-carousel::-webkit-scrollbar{ height:8px; }
+  .work-carousel::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
+  .work-card{ scroll-snap-align:start; flex:0 0 min(360px,82vw); background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:0 8px 30px rgba(50,20,30,.05); transition:transform .3s cubic-bezier(.2,1.5,.4,1); }
+  .work-card:hover{ transform:translateY(-6px); }
+  .work-index{ font-family:var(--mono); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding:16px 24px 0; display:flex; justify-content:space-between; }
+  .carousel-nav{ display:flex; gap:10px; justify-content:flex-end; margin-top:4px; }
+  .carousel-btn{ width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; font-family:var(--body); color:var(--ink); transition:background .2s ease, color .2s ease, transform .2s ease; }
+  .carousel-btn:hover{ background:var(--ink); color:var(--cream); transform:scale(1.06); }
+  .work-thumb{ aspect-ratio:16/10; position:relative; margin-top:14px; margin-inline:20px; border-radius:14px; overflow:hidden; }
+  .thumb-a{ background:linear-gradient(135deg,var(--teal),var(--yellow)); }
+  .thumb-b{ background:linear-gradient(135deg,var(--pink),#7B5EFF); }
+  .thumb-c{ background:linear-gradient(135deg,#7B5EFF,var(--teal)); }
+  .thumb-d{ background:linear-gradient(135deg,var(--yellow),var(--coral)); }
+  .thumb-e{ background:linear-gradient(135deg,var(--peach),var(--pink)); }
+  .work-info{ padding:18px 24px 26px; }
+  .work-info h3{ font-size:1.3rem; margin-bottom:8px; }
+  .work-info p{ color:var(--muted); font-size:.9rem; line-height:1.55; margin:0 0 14px; }
+  .work-tags{ display:flex; gap:8px; flex-wrap:wrap; list-style:none; padding:0; margin:0 0 14px; }
+  .work-tags li{ font-size:.74rem; font-weight:600; padding:4px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); }
+  .work-link{ font-weight:700; font-size:.86rem; color:var(--teal-deep); }
+  .work-confidential{ font-size:.8rem; color:var(--muted); font-style:italic; }
+
+  /* ---- stats ---- */
+  .stats-section{ background:var(--yellow); }
+  .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:44px; }
+  .stat{ background:var(--cream); border-radius:var(--radius); padding:34px; box-shadow:0 15px 35px rgba(90,60,15,.09); }
+  .stat strong{ font-family:var(--display); font-size:clamp(2.6rem,4.6vw,3.8rem); letter-spacing:-.04em; display:block; }
+  .stat span{ color:var(--muted); }
+  @media (max-width:700px){ .stats{ grid-template-columns:1fr; } }
+
+  /* ---- final CTA ---- */
+  .final{ background:var(--coral); padding:120px 0; text-align:center; }
+  .final::before,.final::after{ content:''; position:absolute; border-radius:50%; background:var(--yellow); opacity:.85; }
+  .final::before{ width:200px; height:200px; left:-60px; top:-50px; }
+  .final::after{ width:280px; height:280px; right:-90px; bottom:-140px; }
+  .final .kicker, .final h2, .final .final-lead, .final .btn-row, .final .tiny{ position:relative; z-index:1; }
+  .final h2{ font-size:clamp(2.6rem,6vw,4.8rem); line-height:.98; }
+  .final .btn-row{ justify-content:center; margin-top:28px; }
+  .final-lead{ max-width:540px; margin:20px auto 0; font-size:1.02rem; line-height:1.6; }
+
+  footer{ padding:28px 0; background:var(--ink); color:var(--cream); }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; gap:20px; font-size:.84rem; flex-wrap:wrap; }
+  .footer-links{ display:flex; gap:16px; flex-wrap:wrap; color:#b9adc4; }
+  .footer-links a:hover{ color:#fff; }
+  footer .muted{ color:#b9adc4; display:flex; gap:16px; flex-wrap:wrap; }
+  footer .muted a:hover{ color:#fff; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .ticker-track, .status-pill span, .float-y, .float-y2, .float-rot{ animation:none; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav class="nav" aria-label="Main navigation">
+  <a class="logo" href="#top">Abhilash<i></i></a>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="Abhilash-TU-Resume.pdf" download>Resume</a>
+  </div>
+  <a class="navcta" href="#contact">Contact ↗</a>
+</nav>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-meta reveal">
+        <span>It's <span id="liveClock">--:--:-- --</span> in Trivandrum, Kerala</span>
+      </div>
+
+      <div class="reveal">
+        <div class="my-name-is">my name is</div>
+        <h1 class="hero-name">Abhilash</h1>
+      </div>
+
+      <div class="badge-row reveal">
+        <div class="badge">Currently at <b>Rowenix Marketing</b></div>
+        <div class="badge">Previously at <b>Thoughtline Technologies</b></div>
+      </div>
+
+      <div class="reveal">
+        <div class="status-pill"><span></span> Available for full-time roles</div>
+      </div>
+
+      <p class="hero-tagline reveal">I build <span class="icon-chip bolt"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="#1F1730"/></svg></span> fast, reliable products <span class="icon-chip target"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#1F1730" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3.5" fill="#1F1730"/></svg></span> for web and mobile — mostly in React, Next.js and React Native.</p>
+
+      <div class="btn-row reveal">
+        <a class="primary" href="mailto:Abhilashstorm@gmail.com">Contact me ↗</a>
+        <a class="primary ghost" href="Abhilash-TU-Resume.pdf" download>Download Resume ↓</a>
+      </div>
+
+      <div class="tag-row reveal">
+        <span>Full Stack Developer</span><span class="dot">•</span>
+        <span>Trivandrum, Kerala</span><span class="dot">•</span>
+        <span>3+ yrs experience</span>
+      </div>
+
+      <div class="hero-stage" aria-hidden="true">
+        <div class="doodle-wrap" id="doodleWrap" data-speed="0.06" style="right:2%; top:-280px; width:280px;">
+          <svg viewBox="0 0 380 440" style="width:100%; overflow:visible;">
+            <circle cx="190" cy="205" r="185" fill="var(--yellow)" opacity=".55"/>
+            <circle cx="218" cy="182" r="150" fill="var(--pink)" opacity=".25"/>
+            <path d="M40,72 L44,84 L56,88 L44,92 L40,104 L36,92 L24,88 L36,84 Z" fill="#fff"/>
+            <path d="M338,64 L341,73 L350,76 L341,79 L338,88 L335,79 L326,76 L335,73 Z" fill="#fff"/>
+            <path d="M52,332 L55,341 L64,344 L55,347 L52,356 L49,347 L40,344 L49,341 Z" fill="var(--teal)"/>
+            <line x1="270" y1="308" x2="308" y2="253" stroke="var(--ink)" stroke-width="30" stroke-linecap="round"/>
+            <line x1="270" y1="308" x2="308" y2="253" stroke="var(--skin)" stroke-width="24" stroke-linecap="round"/>
+            <ellipse cx="311" cy="246" rx="24" ry="27" fill="var(--skin)" stroke="var(--ink)" stroke-width="5"/>
+            <line x1="311" y1="229" x2="291" y2="177" stroke="var(--ink)" stroke-width="22" stroke-linecap="round"/>
+            <line x1="311" y1="229" x2="291" y2="177" stroke="var(--skin)" stroke-width="16" stroke-linecap="round"/>
+            <line x1="311" y1="229" x2="333" y2="179" stroke="var(--ink)" stroke-width="22" stroke-linecap="round"/>
+            <line x1="311" y1="229" x2="333" y2="179" stroke="var(--skin)" stroke-width="16" stroke-linecap="round"/>
+            <rect x="100" y="316" width="200" height="160" rx="48" fill="var(--coral)" stroke="var(--ink)" stroke-width="6"/>
+            <ellipse cx="142" cy="422" rx="46" ry="32" fill="var(--coral-deep)" opacity=".5"/>
+            <rect x="172" y="281" width="36" height="48" fill="var(--skin)" stroke="var(--ink)" stroke-width="4"/>
+            <ellipse cx="98" cy="204" rx="11" ry="17" fill="var(--skin)" stroke="var(--ink)" stroke-width="4"/>
+            <ellipse cx="282" cy="204" rx="11" ry="17" fill="var(--skin)" stroke="var(--ink)" stroke-width="4"/>
+            <ellipse cx="190" cy="196" rx="95" ry="102" fill="var(--skin)" stroke="var(--ink)" stroke-width="6"/>
+            <path d="M92,183 Q78,91 190,67 Q302,91 288,183 Q276,153 262,171 Q254,145 238,165 Q230,141 212,163 Q202,139 190,163 Q178,139 168,163 Q150,141 142,165 Q126,145 118,171 Q104,153 92,183 Z" fill="var(--hair)" stroke="var(--ink)" stroke-width="6" stroke-linejoin="round"/>
+            <ellipse cx="232" cy="112" rx="34" ry="18" fill="#3d2f52" opacity=".7"/>
+            <path d="M114,236 Q126,291 190,301 Q254,291 266,236 Q254,269 236,263 Q230,279 210,277 Q204,287 190,287 Q176,287 170,277 Q150,279 144,263 Q126,269 114,236 Z" fill="var(--hair)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
+            <ellipse cx="129" cy="223" rx="13" ry="7" fill="var(--pink)" opacity=".45"/>
+            <ellipse cx="253" cy="223" rx="13" ry="7" fill="var(--pink)" opacity=".45"/>
+            <path d="M132,176 Q150,161 172,173" stroke="var(--ink)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M206,169 Q228,153 250,167" stroke="var(--ink)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <ellipse cx="153" cy="197" rx="17" ry="19" fill="#fff" stroke="var(--ink)" stroke-width="4"/>
+            <circle cx="153" cy="199" r="10" fill="var(--teal-deep)"/>
+            <circle cx="153" cy="199" r="5" fill="var(--ink)"/>
+            <circle cx="149" cy="194" r="3.4" fill="#fff"/>
+            <circle cx="157" cy="204" r="1.7" fill="#fff"/>
+            <ellipse cx="228" cy="197" rx="17" ry="19" fill="#fff" stroke="var(--ink)" stroke-width="4"/>
+            <circle cx="228" cy="199" r="10" fill="var(--teal-deep)"/>
+            <circle cx="228" cy="199" r="5" fill="var(--ink)"/>
+            <circle cx="224" cy="194" r="3.4" fill="#fff"/>
+            <circle cx="232" cy="204" r="1.7" fill="#fff"/>
+            <path d="M190,206 Q186,223 192,228" stroke="var(--skin-dark)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <path d="M148,239 Q190,269 232,239 Q190,257 148,239 Z" fill="var(--ink)"/>
+            <rect x="162" y="240" width="56" height="9" rx="4.5" fill="#fff"/>
+          </svg>
+        </div>
+
+        <div class="sticker-wrap" data-speed="0.14" style="right:22%; top:-350px; width:74px;">
+          <svg viewBox="0 0 70 60" class="float-rot" style="width:100%;">
+            <rect x="5" y="18" width="60" height="36" rx="8" fill="var(--coral)" stroke="var(--ink)" stroke-width="4"/>
+            <rect x="24" y="8" width="22" height="12" rx="3" fill="var(--coral)" stroke="var(--ink)" stroke-width="4"/>
+            <circle cx="35" cy="37" r="14" fill="var(--ink)"/>
+            <circle cx="35" cy="37" r="8" fill="var(--teal)"/>
+          </svg>
+        </div>
+
+        <div class="sticker-wrap" data-speed="0.1" style="right:-2%; top:-140px; width:80px;">
+          <svg viewBox="0 0 90 60" class="float-y" style="width:100%;">
+            <path d="M5,55 L32,15 L47,38 L56,25 L85,55 Z" fill="var(--teal)" stroke="var(--ink)" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M32,15 L40,27 L24,27 Z" fill="#fff"/>
+          </svg>
+        </div>
+
+        <div class="sticker-wrap" data-speed="0.18" style="right:36%; top:-70px; width:64px;">
+          <svg viewBox="0 0 70 42" class="float-y2" style="width:100%;">
+            <rect x="3" y="3" width="64" height="36" rx="10" fill="var(--ink)" stroke="var(--ink)" stroke-width="4"/>
+            <text x="35" y="27" font-family="JetBrains Mono, monospace" font-size="16" fill="var(--yellow)" text-anchor="middle">&lt;/&gt;</text>
+          </svg>
+        </div>
+      </div>
+
+      <svg class="squiggle" id="squiggle" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,30 Q50,5 100,30 T200,30 T300,30 T400,30 T500,30 T600,30 T700,30 T800,30 T900,30 T1000,30 T1100,30 T1200,30"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-group">
+        <span class="pill hot">Migrated OutSystems to React, and lived to tell it</span>
+        <span class="pill">React · Next.js · React Native</span>
+        <span class="pill">Ships mobile apps to real app stores</span>
+        <span class="pill hot">Node.js · MongoDB · ASP.NET</span>
+        <span class="pill">Probably thinking about trail routes right now</span>
+      </div>
+      <div class="ticker-group" aria-hidden="true">
+        <span class="pill hot">Migrated OutSystems to React, and lived to tell it</span>
+        <span class="pill">React · Next.js · React Native</span>
+        <span class="pill">Ships mobile apps to real app stores</span>
+        <span class="pill hot">Node.js · MongoDB · ASP.NET</span>
+        <span class="pill">Probably thinking about trail routes right now</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="transition-line reveal">hey yoo</div>
+      <div class="kicker reveal">About me</div>
+      <h2 class="section-title reveal">Full-stack by trade,<br>curious by default.</h2>
+
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <svg viewBox="0 0 380 440" style="width:min(300px,70vw); overflow:visible;">
+            <circle cx="190" cy="205" r="185" fill="var(--yellow)" opacity=".5"/>
+            <circle cx="218" cy="182" r="150" fill="var(--pink)" opacity=".22"/>
+            <path d="M40,72 L44,84 L56,88 L44,92 L40,104 L36,92 L24,88 L36,84 Z" fill="#fff"/>
+            <path d="M52,332 L55,341 L64,344 L55,347 L52,356 L49,347 L40,344 L49,341 Z" fill="var(--teal)"/>
+            <line x1="270" y1="308" x2="308" y2="253" stroke="var(--ink)" stroke-width="30" stroke-linecap="round"/>
+            <line x1="270" y1="308" x2="308" y2="253" stroke="var(--skin)" stroke-width="24" stroke-linecap="round"/>
+            <ellipse cx="311" cy="246" rx="24" ry="27" fill="var(--skin)" stroke="var(--ink)" stroke-width="5"/>
+            <line x1="311" y1="229" x2="291" y2="177" stroke="var(--ink)" stroke-width="22" stroke-linecap="round"/>
+            <line x1="311" y1="229" x2="291" y2="177" stroke="var(--skin)" stroke-width="16" stroke-linecap="round"/>
+            <line x1="311" y1="229" x2="333" y2="179" stroke="var(--ink)" stroke-width="22" stroke-linecap="round"/>
+            <line x1="311" y1="229" x2="333" y2="179" stroke="var(--skin)" stroke-width="16" stroke-linecap="round"/>
+            <rect x="100" y="316" width="200" height="160" rx="48" fill="var(--coral)" stroke="var(--ink)" stroke-width="6"/>
+            <ellipse cx="142" cy="422" rx="46" ry="32" fill="var(--coral-deep)" opacity=".5"/>
+            <rect x="172" y="281" width="36" height="48" fill="var(--skin)" stroke="var(--ink)" stroke-width="4"/>
+            <ellipse cx="98" cy="204" rx="11" ry="17" fill="var(--skin)" stroke="var(--ink)" stroke-width="4"/>
+            <ellipse cx="282" cy="204" rx="11" ry="17" fill="var(--skin)" stroke="var(--ink)" stroke-width="4"/>
+            <ellipse cx="190" cy="196" rx="95" ry="102" fill="var(--skin)" stroke="var(--ink)" stroke-width="6"/>
+            <path d="M92,183 Q78,91 190,67 Q302,91 288,183 Q276,153 262,171 Q254,145 238,165 Q230,141 212,163 Q202,139 190,163 Q178,139 168,163 Q150,141 142,165 Q126,145 118,171 Q104,153 92,183 Z" fill="var(--hair)" stroke="var(--ink)" stroke-width="6" stroke-linejoin="round"/>
+            <ellipse cx="232" cy="112" rx="34" ry="18" fill="#3d2f52" opacity=".7"/>
+            <path d="M114,236 Q126,291 190,301 Q254,291 266,236 Q254,269 236,263 Q230,279 210,277 Q204,287 190,287 Q176,287 170,277 Q150,279 144,263 Q126,269 114,236 Z" fill="var(--hair)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
+            <ellipse cx="129" cy="223" rx="13" ry="7" fill="var(--pink)" opacity=".45"/>
+            <ellipse cx="253" cy="223" rx="13" ry="7" fill="var(--pink)" opacity=".45"/>
+            <path d="M132,176 Q150,161 172,173" stroke="var(--ink)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M206,169 Q228,153 250,167" stroke="var(--ink)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <ellipse cx="153" cy="197" rx="17" ry="19" fill="#fff" stroke="var(--ink)" stroke-width="4"/>
+            <circle cx="153" cy="199" r="10" fill="var(--teal-deep)"/>
+            <circle cx="153" cy="199" r="5" fill="var(--ink)"/>
+            <circle cx="149" cy="194" r="3.4" fill="#fff"/>
+            <circle cx="157" cy="204" r="1.7" fill="#fff"/>
+            <ellipse cx="228" cy="197" rx="17" ry="19" fill="#fff" stroke="var(--ink)" stroke-width="4"/>
+            <circle cx="228" cy="199" r="10" fill="var(--teal-deep)"/>
+            <circle cx="228" cy="199" r="5" fill="var(--ink)"/>
+            <circle cx="224" cy="194" r="3.4" fill="#fff"/>
+            <circle cx="232" cy="204" r="1.7" fill="#fff"/>
+            <path d="M190,206 Q186,223 192,228" stroke="var(--skin-dark)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <path d="M148,239 Q190,269 232,239 Q190,257 148,239 Z" fill="var(--ink)"/>
+            <rect x="162" y="240" width="56" height="9" rx="4.5" fill="#fff"/>
+          </svg>
+        </div>
+
+        <div class="about-text">
+          <p class="reveal">I'm Abhilash — a full-stack developer based in Trivandrum, Kerala, currently building at Rowenix Marketing. Most of my time is spent in React, Next.js and React Native, though I'm just as comfortable moving a legacy system <span class="icon-chip spark"><svg viewBox="0 0 24 24"><path d="M12 2 14.5 9 22 12 14.5 15 12 22 9.5 15 2 12 9.5 9Z" fill="#1F1730"/></svg></span> onto a modern stack or wiring up a Node.js API when a project needs one.</p>
+          <p class="reveal">I like the unglamorous parts of the job — untangling a messy OutSystems migration, making a dashboard actually make sense to the people using it, shipping a mobile feature that still works on a bad connection <span class="icon-chip loop"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.66-5.66M20 12a8 8 0 0 1-13.66 5.66" stroke="#1F1730" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="#1F1730" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg></span>. Outside of work: behind a camera, on a trail somewhere in Kerala, or a few episodes deep into something I shouldn't have started on a weeknight.</p>
+          <div class="identity-tags reveal">
+            <span class="tag">React Developer</span>
+            <span class="tag">Full-Stack Engineer</span>
+            <span class="tag">Mobile Developer</span>
+            <span class="tag">Weekend Trekker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="kicker reveal">Toolkit</div>
+      <h2 class="section-title reveal">What I actually<br>build with.</h2>
+      <div class="toolkit-groups">
+        <div class="toolkit-group reveal">
+          <h3>Frontend</h3>
+          <div class="toolkit-pills"><span>React</span><span>Next.js</span><span>TypeScript</span><span>JavaScript</span><span>Redux</span><span>Tailwind</span><span>Sass</span><span>Angular</span></div>
+        </div>
+        <div class="toolkit-group reveal">
+          <h3>Mobile</h3>
+          <div class="toolkit-pills"><span>React Native</span><span>Flutter</span></div>
+        </div>
+        <div class="toolkit-group reveal">
+          <h3>Backend</h3>
+          <div class="toolkit-pills"><span>Node.js</span><span>Express.js</span><span>ASP.NET</span><span>Java</span></div>
+        </div>
+        <div class="toolkit-group reveal">
+          <h3>Database</h3>
+          <div class="toolkit-pills"><span>MongoDB</span><span>SQL Server</span><span>Firebase</span><span>GraphQL</span></div>
+        </div>
+        <div class="toolkit-group reveal">
+          <h3>Tools &amp; practices</h3>
+          <div class="toolkit-pills"><span>Git</span><span>REST APIs</span><span>Agile</span><span>Clean Architecture</span><span>App Store Deployment</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="transition-line reveal">okay, enough about me — here's the work.</div>
+      <div class="kicker reveal">Featured work</div>
+      <h2 class="section-title reveal">A few things<br>I've actually shipped.</h2>
+      <p class="lead work-note reveal">Real systems from real jobs — enterprise platforms, a published app, and the college project that started it all.</p>
+    </div>
+    <div class="wrap work-carousel-wrap">
+      <div class="work-carousel" id="workCarousel">
+        <article class="work-card reveal">
+          <div class="work-index"><span>Project 01</span><span>Thoughtline · 2024–2026</span></div>
+          <div class="work-thumb thumb-a"></div>
+          <div class="work-info">
+            <h3>DriverView</h3>
+            <p>Large-scale fleet management platform spanning web and mobile — built business-critical features across React.js, React Native and ASP.NET APIs.</p>
+            <ul class="work-tags"><li>Fleet Management</li><li>React Native</li></ul>
+            <span class="work-confidential">Confidential client project — happy to walk through it on a call.</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index"><span>Project 02</span><span>Thoughtline · 2024–2026</span></div>
+          <div class="work-thumb thumb-b"></div>
+          <div class="work-info">
+            <h3>Twinlake</h3>
+            <p>An inventory management system with dashboard-driven workflows, reporting modules and graphical analytics, designed around how people actually use it daily.</p>
+            <ul class="work-tags"><li>Inventory System</li><li>Dashboards</li></ul>
+            <span class="work-confidential">Confidential client project — happy to walk through it on a call.</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index"><span>Project 03</span><span>Thoughtline · 2024–2026</span></div>
+          <div class="work-thumb thumb-c"></div>
+          <div class="work-info">
+            <h3>FleetView</h3>
+            <p>Migrated a major legacy OutSystems application to React.js — modernizing the architecture while keeping the platform running for its users.</p>
+            <ul class="work-tags"><li>Legacy Migration</li><li>React.js</li></ul>
+            <span class="work-confidential">Confidential client project — happy to walk through it on a call.</span>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index"><span>Project 04</span><span>Picky Assist · 2022–2024</span></div>
+          <div class="work-thumb thumb-d"></div>
+          <div class="work-info">
+            <h3>Picky Assist</h3>
+            <p>A cross-platform app published on the Google Play Store and Apple App Store, with push notifications, telecom integrations and native Android modules.</p>
+            <ul class="work-tags"><li>Mobile App</li><li>Published</li></ul>
+            <a class="work-link" href="https://pickyassist.com" target="_blank" rel="noopener">Company site ↗</a>
+          </div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index"><span>Project 05</span><span>College · 2021–2022</span></div>
+          <div class="work-thumb thumb-e"></div>
+          <div class="work-info">
+            <h3>Student Management App</h3>
+            <p>My first real app — built in Flutter and MongoDB during college, handling multiple users and full CRUD on student data. Everyone starts somewhere.</p>
+            <ul class="work-tags"><li>First App</li><li>Flutter</li></ul>
+            <span class="work-confidential">College project — source available on request.</span>
+          </div>
+        </article>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="carPrev" aria-label="Previous project">←</button>
+        <button class="carousel-btn" id="carNext" aria-label="Next project">→</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section" id="proof">
+    <div class="wrap">
+      <div class="kicker reveal" style="color:var(--ink)">By the numbers</div>
+      <h2 class="section-title reveal">A few numbers<br>worth showing.</h2>
+      <div class="stats">
+        <div class="stat reveal"><strong data-target="3" data-suffix="+">0</strong><span>years of professional experience</span></div>
+        <div class="stat reveal"><strong data-target="6">0</strong><span>production systems shipped</span></div>
+        <div class="stat reveal"><strong data-target="1">0</strong><span>app live on the App Store &amp; Google Play</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <div class="wrap">
+      <div class="kicker" style="color:var(--ink)">Let's talk</div>
+      <h2>Got something<br>worth building?</h2>
+      <p class="final-lead">I do my best work on problems with real constraints — legacy systems that need modernizing, dashboards that have to make sense of messy data, mobile features that still need to work when the network doesn't. Open to full-time roles and good conversations.</p>
+      <div class="btn-row">
+        <a class="primary on-dark" href="mailto:Abhilashstorm@gmail.com">Email me ↗</a>
+        <a class="primary ghost" href="Abhilash-TU-Resume.pdf" download>Download Resume ↓</a>
+      </div>
+      <div class="tiny">Or find me on GitHub and LinkedIn below.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Abhilash T.U</strong> · Full Stack Developer</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="muted">
+      <a href="https://github.com/AbhilashTUofficial" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/abhilashtu/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://twitter.com/Abhilash_TU" target="_blank" rel="noopener">Twitter/X</a>
+      <a href="Abhilash-TU-Resume.pdf" download>Resume</a>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- live clock (Asia/Kolkata) ---- */
+  var liveClock = document.getElementById('liveClock');
+  function updateLiveClock(){
+    if(!liveClock) return;
+    try{
+      var now = new Date();
+      liveClock.textContent = now.toLocaleTimeString('en-US', { timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true });
+    }catch(e){}
+  }
+  updateLiveClock();
+  setInterval(updateLiveClock, 1000);
+
+  /* ---- work carousel arrows ---- */
+  var carousel = document.getElementById('workCarousel');
+  var carPrev = document.getElementById('carPrev');
+  var carNext = document.getElementById('carNext');
+  if(carousel && carPrev && carNext){
+    var stepSize = function(){
+      var card = carousel.querySelector('.work-card');
+      return card ? card.getBoundingClientRect().width + 22 : 360;
+    };
+    carPrev.addEventListener('click', function(){ carousel.scrollBy({ left:-stepSize(), behavior:'smooth' }); });
+    carNext.addEventListener('click', function(){ carousel.scrollBy({ left:stepSize(), behavior:'smooth' }); });
+  }
+
+  /* ---- reveal on scroll ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  var counters = document.querySelectorAll('[data-target]');
+
+  if(!reduced && 'IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold:.13 });
+    reveals.forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i % 5, 4) * 55) + 'ms';
+      observer.observe(el);
+    });
+
+    var counterObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = +el.dataset.target;
+        var suffix = el.dataset.suffix || '';
+        var start = performance.now();
+        var duration = 1200;
+        function tick(now){
+          var p = Math.min((now-start)/duration, 1);
+          var eased = 1 - Math.pow(1-p, 3);
+          el.textContent = Math.round(target*eased) + suffix;
+          if(p < 1){ requestAnimationFrame(tick); }
+        }
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold:.5 });
+    counters.forEach(function(c){ counterObserver.observe(c); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('visible'); });
+    counters.forEach(function(el){
+      el.textContent = (+el.dataset.target) + (el.dataset.suffix || '');
+    });
+  }
+
+  /* ---- scroll-linked parallax: doodle avatar, stickers, squiggle divider ---- */
+  var parallaxEls = document.querySelectorAll('.doodle-wrap[data-speed], .sticker-wrap[data-speed]');
+  var squiggle = document.getElementById('squiggle');
+  var ticking = false;
+
+  function onScroll(){
+    if(!reduced){
+      var y = window.scrollY || window.pageYOffset;
+      for(var i=0; i<parallaxEls.length; i++){
+        var el = parallaxEls[i];
+        var speed = parseFloat(el.getAttribute('data-speed')) || 0.1;
+        el.style.transform = 'translateY(' + (y*speed) + 'px)';
+      }
+      if(squiggle){
+        squiggle.style.transform = 'translateX(' + (-(y*0.08) % 60) + 'px)';
+      }
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive:true });
+  onScroll();
+</script>
+</body>
+</html>
